@@ -1,1 +1,0 @@
-self.__REACT_LOADABLE_MANIFEST="{\"pages/index.tsx -> ../components/Graph\":{\"id\":\"pages/index.tsx -> ../components/Graph\",\"files\":[\"static/chunks/_pages-dir-browser_components_Graph_tsx.js\"]}}"

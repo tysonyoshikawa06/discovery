@@ -2,15 +2,12 @@
 node_modules/
 
 # Build output
-/.next/
-/out/
+.next/
+out/
 /dist/
 
 # Logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
+*.log
 
 # Environment variables
 .env
@@ -20,13 +17,15 @@ pnpm-debug.log*
 .env.production.local
 
 # Local vscode settings
-.vscode/
+vscode/
+.idea/
 
 # Mac system files
 .DS_Store
 
 # OS generated files
 Thumbs.db
+*.swp
 
 # Editor directories and files
 .idea/
@@ -36,11 +35,18 @@ Thumbs.db
 # TypeScript cache
 *.tsbuildinfo
 
-# Tailwind JIT cache (optional, if using JIT)
-.tailwindcache/
+# Cache
+.cache/
+dist/
+*.gz
+*.pack.gz
+*.hot-update.js
+*.hot-update.json
+*.old
 
 # Coverage reports (if you add testing)
 coverage/
 
 # gzip files
 *.gz
+
