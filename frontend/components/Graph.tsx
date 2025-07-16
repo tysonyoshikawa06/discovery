@@ -27,10 +27,15 @@ const Graph = ({ onCyInit }: { onCyInit?: (cyInstance: Core) => void }) => {
           container: cyContainer.current,
           elements: [...data.nodes, ...data.edges],
           layout: {
-            name: "breadthfirst",
-            directed: false,
-            padding: 50,
+            name: "cose",
+            idealEdgeLength: 100,
+            nodeRepulsion: 400000,
+            gravity: 80,
+            numIter: 1000,
+            padding: 125,
+            animate: false,
           },
+
           style: [
             {
               selector: "node",

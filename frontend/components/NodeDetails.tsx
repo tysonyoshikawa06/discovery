@@ -25,9 +25,9 @@ export default function NodeDetails({
     <div>
       <h1 className="text-2xl font-bold">{node.data.label}</h1>
       <p>{node.data.description || "No description yet."}</p>
-      <div>
-        <h2 className="text-xl font-bold">Connected Topics</h2>
-        <ul>
+      <div className="border p-5">
+        <h2 className="text-xl font-bold ml-3">Connected Topics</h2>
+        <ul className="list-disc">
           {connectedNodes.map((e, i) => (
             <li key={i}>{e.data.label}</li>
           ))}
