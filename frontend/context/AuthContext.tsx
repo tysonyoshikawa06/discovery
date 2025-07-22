@@ -20,16 +20,28 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    const getSession = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+
       setSession(session);
       setUser(session?.user ?? null);
       setLoading(false);
-    });
+    };
+
+    getSession();
 
     const { data: listener } = supabase.auth.onAuthStateChange(
-      (event, session) => {
+      (_event, session) => {
         setSession(session);
         setUser(session?.user ?? null);
+
+        console.log("auth state has changed: ", session);
+
+        if (session?.user) {
+          saveUserToDatabase(session.user);
+        }
       }
     );
 
@@ -37,6 +49,29 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       listener.subscription.unsubscribe();
     };
   }, []);
+
+  const saveUserToDatabase = async (user: User) => {
+    try {
+      const { data, error } = await supabase.from("users").insert(
+        {
+          email: user.email,
+          name: user.user_metadata.name,
+        },
+        {
+          onConflict: ["id"], // prevents inserting if ID already exists
+          ignoreDuplicates: true, // ON CONFLICT DO NOTHING
+        }
+      );
+
+      if (error) {
+        throw error;
+      }
+
+      console.log("User saved to DB:", data);
+    } catch (err) {
+      console.error("Error saving user to DB:", err.message || err);
+    }
+  };
 
   return (
     <AuthContext.Provider value={{ user, session, loading }}>

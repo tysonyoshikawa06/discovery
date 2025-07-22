@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.0",
-    "@next/mdx": "^15.3.5",
+    "@next/mdx": "^15.4.2",
     "@supabase/supabase-js": "^2.52.0",
     "@tailwindcss/typography": "^0.5.16",
     "cytoscape": "^3.32.0",
